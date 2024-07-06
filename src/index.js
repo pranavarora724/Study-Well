@@ -3,11 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+// import { configure } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import rootReducer from './reducer/rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+  reducer:rootReducer
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+        <Toaster />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
