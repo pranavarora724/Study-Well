@@ -27,26 +27,36 @@ async function addSection(req , res)
         )
     }
 
-    const newSection = new CourseSection(
+    const newSection =  await CourseSection.create(
         {
             sectionName:name,
             course_id:course_id
         }
     )
 
-    const addedSection = await newSection.save(newSection);
+    console.log("Neew Section = ", newSection);
 
-    updatedCourse = Course.findByIdAndUpdate(
-        {course_id},
-        {$push: {courseContent: addedSection._id} },
+
+    // const addedSection = await newSection.save(newSection);
+
+   const updatedCourse =await  Course.findOneAndUpdate(
+        {_id:course_id},
+        {$push: {courseContent: newSection._id} },
         {new:true}
-    );
+   ).populate({path:'courseContent' , 
+        populate:{
+            path:'subSection'
+        }
+    }).exec();
+
+    console.log("Updated Course = " , updatedCourse);
+    
 
     return res.status(200).json(
         {
             success:true,
             message:'Section added successfully',
-            body:addedSection
+            body:updatedCourse
         }
     )
     
@@ -78,17 +88,28 @@ async function updateSection(req , res)
         )
     }
 
-    const updatedSection = CourseSection.findByIdAndUpdate(
-        {section_id},
+    const updatedSection = await CourseSection.findOneAndUpdate(
+        {_id:section_id},
         {sectionName:name},
         {new:true}
     )
+
+    const courseId = updatedSection.course_id;
+
+    const updatedCourse = await Course.findOne(
+        {_id:courseId}
+    ).populate({path:'courseContent' , 
+        populate:{
+            path:'subSection'
+        }
+    }).exec();
+
 
     return res.status(200).json(
         {
             success:true,
             message:'Successfully updated' ,
-            body:updatedSection       
+            body:updatedCourse       
         }
     )
     
@@ -113,35 +134,45 @@ async function deleteSection(req , res)
 {
     try {
 
-        const section_id = req.params.id;
+        const section_id = req.query.id;
+        console.log("Section Id = " , section_id);
 
-        const sectionToBeDeleted = CourseSection.findById({section_id});
+        const sectionToBeDeleted = await CourseSection.findOne({_id:section_id});
         const course_id = sectionToBeDeleted.course_id;
 
-        const updatedCourse = Course.findByIdAndUpdate(
-            {course_id},
+        const updatedCourse =await Course.findOneAndUpdate(
+            {_id:course_id},
             {$pull:{courseContent:section_id}},
             {new:true}
-        );
+        ).populate({path:'courseContent' , 
+            populate:{
+                path:'subSection'
+            }
+        }).exec();
+
+        console.log("Updated Course = " , updatedCourse);
 
         const subSections = sectionToBeDeleted.subSection;
         
-        subSections.forEach( async(eachSubSection)=>{
+        if(subSections)
+        {
+            subSections.forEach( async(eachSubSection)=>{
             
-        const subSectionDeleted = await CourseSubSection.findById({eachSubSection});
-        const public_id = subSectionDeleted.public_id;
-        await imageDelete(public_id);
-
-        CourseSubSection.findByIdAndDelete({eachSubSection});
-        } )
-        CourseSection.findByIdAndDelete({section_id});
-
+                const subSectionDeleted = await CourseSubSection.findById({eachSubSection});
+                const public_id = subSectionDeleted.public_id;
+                await imageDelete(public_id);
         
+                await CourseSubSection.findOneAndDelete({_id:eachSubSection});
+                } )
+        }
+
+       await CourseSection.findOneAndDelete({_id:section_id});
 
         return res.status(200).json(
             {
                 success:true,
-                message:'Course section successfully deleted'
+                message:'Course section successfully deleted',
+                body:updatedCourse
             }
         )
         

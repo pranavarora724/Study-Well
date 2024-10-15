@@ -51,9 +51,9 @@ function ContactUsForm()
                     <div className="flex flex-row gap-x-5 mt-4 text-white">
                         {/* Firs Name */}
                         <div className="w-[47%]">
-                            <label htmlFor="firstName">First Name</label>
+                            <label className="text-richblack-800" htmlFor="firstName">First Name</label>
                             <input
-                            className="bg-richblack-700 w-[100%] p-2 pr-0 rounded-lg mt-1"
+                            className="text-richblack-700 border-2 border-richblack-800 w-[100%] p-2 pr-0 rounded-lg mt-1"
                               type="text"
                               name='firstName'
                               id='firstName'
@@ -74,9 +74,9 @@ function ContactUsForm()
                         </div>
                         {/* LAst Name */}
                         <div className="w-[47%]">
-                            <label htmlFor="lastName">Last Name</label>
+                            <label className="text-richblack-800" htmlFor="lastName">Last Name</label>
                             <input
-                            className="bg-richblack-700 w-[100%] p-2 pr-0 rounded-lg mt-1"
+                            className="text-richblack-700 border-2 border-richblack-800 w-[100%] p-2 pr-0 rounded-lg mt-1"
                               type="text"
                               name="lastName"
                               id="lastName"
@@ -99,9 +99,9 @@ function ContactUsForm()
 
                     {/* Email Address */}
                     <div className="mt-5 flex flex-col">
-                        <label htmlFor="email">Email</label>
+                        <label className="text-richblack-800" htmlFor="email">Email</label>
                         <input
-                        className="bg-richblack-700 p-2 rounded-lg mt-1"
+                        className="text-richblack-700 border-2 border-richblack-800 p-2 rounded-lg mt-1"
                           type="email"
                           name="email"
                           id="email"
@@ -123,12 +123,12 @@ function ContactUsForm()
 
                     {/* Phone Number */}
                     <div>
-                        <label className="mt-5 flex flex-col">Phone Number</label>
+                        <label className="mt-5 flex flex-col text-richblack-800">Phone Number</label>
                         <div className="flex flex-row gap-x-5 items-center">
                             {/* Counry CODES */}
                             <div className="w-[130px] mt-1">
                                 <select
-                                className="w-[130px] p-2 bg-richblack-700 rounded-lg"
+                                className="w-[130px] p-2 text-richblack-700 border-2 border-richblack-800 rounded-lg"
                                 name="coutryCode"
                                 id="countryCode"
                                 {...register("countryCode" , {
@@ -153,7 +153,7 @@ function ContactUsForm()
                                 <input
                                 type="number"
                                 name="phoneNumber"
-                                className="bg-richblack-700 p-2 w-[100%] rounded-lg mt-1"
+                                className="text-richblack-700 border-2 border-richblack-800 p-2 w-[100%] rounded-lg mt-1"
                                 id="phoneNumber"
                                 placeholder="12345 67890"
                                 {...register("phoneNumber" , {
@@ -179,9 +179,9 @@ function ContactUsForm()
 
                     {/* MEssage Field*/}
                     <div className="mt-5 flex flex-col">
-                        <label htmlFor="message">Message</label>
+                        <label className="text-richblack-800" htmlFor="message">Message</label>
                         <textarea
-                        className="bg-richblack-700 p-2 rounded-lg mt-1"
+                        className="text-richblack-700 border-2 border-richblack-800 p-2 rounded-lg mt-1"
                         name="message"
                         id="message"
 

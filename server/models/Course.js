@@ -40,7 +40,7 @@ const courseSchema = new mongoose.Schema(
 
         // One course can have may tags like  #ai #webdevelopment #software #development"
         tag:{
-            type:String
+            type:[String]
         },
 
         // One course can have only one category

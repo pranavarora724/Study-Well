@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-function RequirementField({name , label , register , errors , setValue , getValues})
+function RequirementField({name , label , register , errors , setValue , getValues , editValue})
 {
 
     
     const [requirement , setRequirement] = useState("");
-    const [requirementList , setRequirementList] = useState([]); 
+    const [requirementList , setRequirementList] = useState(editValue ? editValue:[]); 
     
 
     // Q- IMP => Where will you use 'register' hook
@@ -26,7 +26,7 @@ function RequirementField({name , label , register , errors , setValue , getValu
     function handleAddRequirement()
     {
         console.log(requirement);
-        if(requirement)
+        if(requirement && !(requirementList.includes(requirement)) )
             {
                 setRequirementList( (prevArray)=>[
                     ...prevArray , requirement
@@ -59,6 +59,12 @@ function RequirementField({name , label , register , errors , setValue , getValu
                 className="text-white mt-2 p-2 bg-richblack-700 border-none rounded-lg"
                 >
                 </input>
+
+                {
+                    errors[name] && (
+                        <span className="text-pink-200">Enter Requirements</span>
+                    )
+                }
 
                 <div onClick={handleAddRequirement} className="text-yellow-50 font-semibold mt-2 cursor-pointer">Add</div>
             </div>

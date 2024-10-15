@@ -28,7 +28,7 @@ function ProfilePictureForm()
         console.log("File = ");
         console.log(data.profilePic[0]);
 
-        updateProfilePic(data.profilePic[0] , token , dispatch);
+        updateProfilePic(data.profilePic[0] , token , dispatch , navigate);
 
     }
     

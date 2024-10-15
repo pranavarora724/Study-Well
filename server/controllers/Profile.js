@@ -152,6 +152,12 @@ async function getProfile( req , res)
 
     const profile = await User.findOne({_id:uid})
                                 .populate("profile")
+                                .populate({
+                                    path:"courses",
+                                    populate:{
+                                        path:"ratingAndReviews"
+                                    },
+                                })
                                 .exec();
 
     console.log("Profile  = " , profile);
@@ -268,11 +274,48 @@ async function updateProfilePic(req , res)
     }
 }
 
+async function getInstructorDashboard(req,res)
+{
+    const instructorId = req.body.instructorId;
+
+    if(!instructorId)
+    {
+        return(res.status(400).json(
+            {
+                success:false,
+                message:'Instructor id not present'
+            }
+        ))
+    }
+
+    const instructorCourses = await Course.find(
+        {instructor:instructorId}
+    )
+
+    const instructorData = instructorCourses.map((course , index)=>{
+        const data={
+            _id:course._id,
+            courseName:course.name,
+            studentsEnrolled:course.studentsEnrolled.length,
+            moneyEarned:course.studentsEnrolled.length * course.price
+        }
+
+        return data;
+    })
+    res.status(200).json(
+        {
+            success:true,
+            data:instructorData
+        }
+    )
+}
+
 module.exports = {
     updateProfile,
     deleteAccount,
     getProfile , 
-    updateProfilePic
+    updateProfilePic,
+    getInstructorDashboard
 }
 
 function isFileTypeSupported(filename , supportedTypes)

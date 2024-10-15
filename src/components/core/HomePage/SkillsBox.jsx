@@ -31,22 +31,24 @@ function SkillsBox()
         }
     ];
     return(
-        <div className="w-10/12 mx-auto mt-12">
+        <div className="w-10/12 mx-auto  mb-12">
             {/* Heading */}
             <div className="flex flex-col md:flex-row gap-x-12 justify-center">
                 <div className="text-2xl font-bold">Get The Skills you need <span className="text-blue-600"> For The Job In Demand </span></div>
                
-                <div className="flex flex-col gap-y-8 md:w-[40%]"> 
-                <div className="text-sm text-richblack-400">The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</div>
+                {/* <div className="flex flex-col gap-y-8 md:w-[40%]"> 
+                <div className="text-sm text-richblack-400">The modern StudyWell is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</div>
                 <Button  active={true} linkTo={'/signup'}>Learn More</Button>
-                </div>            
+                </div>             */}
             </div>
 
+
+
             {/* Bottom Part */}
-            <div className="flex flex-col sm:flex-row items-center gap-x-8 mt-8 mx-auto justify-center">
+            <div className="flex flex-col-reverse sm:flex-row items-center gap-x-8 mt-8 mx-auto justify-center">
 
                 {/* Left Part */}
-                    <div className="flex flex-col gap-y-8 md:w-[30%] w-[80%] ">
+                    <div className="flex flex-col gap-y-8 md:w-[30%] w-[80%] mt-20 sm:mt-0">
                         {
                             data.map( (item , index)=>{
                                 return(
@@ -65,8 +67,8 @@ function SkillsBox()
                     </div>
 
                     {/* Right part */}
-                    <div className="lg:w-[600px] md:w-[450px] sm:w-[350px] w-[80%] relative sm:mt-0 mt-6">
-                        <img className="" src={TimeLineImage}></img>
+                    <div className="lg:w-[550px] md:w-[450px] sm:w-[350px] w-[80%] relative sm:mt-0 mt-6">
+                        <img className="" src="pics/heroBgImage.webp"></img>
 
                         <div className="sm:hidden md:flex h-[100px] w-[70%] absolute -bottom-[50px] translate-x-[20%] mx-auto items-center bg-caribbeangreen-600 flex flex-row justify-around gap-x-2">
                             <div className="flex flex-row text-white items-center gap-x-4">
@@ -83,6 +85,12 @@ function SkillsBox()
                         </div>
                     </div>
                 
+            </div>
+
+            
+            <div className="mx-auto w-fit flex flex-row gap-x-8 mt-20">
+                <Button linkTo={'/category/web-development'} active={true}>Browse Courses</Button>
+                <Button linkTo={'/signup'} active={false}>Book a demo</Button>
             </div>
 
             

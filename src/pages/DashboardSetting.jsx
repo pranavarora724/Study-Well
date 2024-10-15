@@ -20,11 +20,11 @@ function DashboardSetting() {
             <div className="flex flex-row">
 
                 {/* Side bar */}
-                <div className="border-2 border-white bg-richblack-700   min-h-[100vh]">
+                <div className=" bg-richblack-700   min-h-[100vh]">
                     <Sidebar></Sidebar>
                 </div>
 
-                <div className="max-w-[800px] w-[80%] mx-auto border-2 border-white ">
+                <div className="max-w-[800px] w-[80%] mx-auto ">
                     <div className="text-white text-2xl mt-6">My Profile</div>
 
                     {/* First div */}

@@ -2,8 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    step: 1,
-  course: null,
+    step: ((localStorage.getItem('step'))?(localStorage.getItem("step")):(1)),
+  course: ((localStorage.getItem("course"))?(JSON.parse(localStorage.getItem("course"))):(null)),
   editCourse: false,
   paymentLoading: false,
 }
@@ -16,7 +16,7 @@ const courseSlice = createSlice(
         setStep:(state , action)=>{
             state.step = action.payload;
         },
-        setCourse: (state, action) => {
+        setCourseObject: (state, action) => {
             state.course = action.payload
           },
           setEditCourse: (state, action) => {
@@ -35,6 +35,6 @@ const courseSlice = createSlice(
     }
 })
 
-export const {resetCourseSlice, setCourse , setEditCourse , setPaymentLoading , setStep} = courseSlice.actions
+export const {resetCourseSlice, setCourseObject , setEditCourse , setPaymentLoading , setStep} = courseSlice.actions
 
 export default courseSlice.reducer;

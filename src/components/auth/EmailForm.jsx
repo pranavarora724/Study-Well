@@ -53,13 +53,13 @@ function EmailForm() {
                 {/* Email */}
                 <div className='fieldContainer mt-4'>
                     <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Email Address</span>
+                        <span className='text-richblack-600 text-sm font-semibold'>Email Address</span>
                         <span className='text-pink-200 text-sm'>*</span>
                     </div>
                     <input
                         name="email"
                         type='email'
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md px-2 border-none outline-none w-[100%] '
+                        className='text-richblack-800 bg-white mt-2 py-2 rounded-md px-2 border-2 border-richblack-800 w-[100%] '
                         placeholder='Enter email address'
                         value={formData.email}
                         onChange={changeHandler}

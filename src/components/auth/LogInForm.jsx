@@ -68,23 +68,23 @@ Login(formData.email , formData.password , navigate , dispatch)
 
     return(
         <div className='signup_form'>
-        <h2 className='text-white font-semibold text-2xl'>Welocme Back</h2>
-        <div className='mt-6 opacity-80 text-white'>Build Skills for Todday,Tommorow and beyond</div>
-        <div className='opacity-80 text-white'>Education to future proof your career</div>
+        <h2 className='text-richblack-800  font-bold text-3xl'>Welocme Back</h2>
+        <div className='mt-6 opacity-80 text-richblack-700'>Build Skills for Todday,Tommorow and beyond</div>
+        <div className='opacity-80 text-richblack-700'>Education to future proof your career</div>
 
         <form onSubmit={submitHandler}>
 
             {/* Email */}
             <div className='fieldContainer mt-4'>
             <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Email Address</span> 
+                        <span className='text-richblack-600 font-semibold text-sm'>Email Address</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
             </div>
             <input
             name="email"
             type='email'
             required
-            className='bg-richblack-800 text-white mt-2 py-2 rounded-md px-2 border-none outline-none w-[100%] '
+            className='text-richblack-800 border-2 border-richblack-800 bg-white mt-2 py-2 rounded-md px-2 w-[100%] '
             placeholder='Enter email address'
             value={formData.email}
             onChange={changeHandler}
@@ -94,12 +94,12 @@ Login(formData.email , formData.password , navigate , dispatch)
             {/* Password */}
             <div className='fieldContainer password_field mt-4 relative'> 
             <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Password</span> 
+                        <span className='text-richblack-600 font-semibold text-sm'>Password</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
             </div>
             <input
             name="password"
-            className='bg-richblack-800 text-white mt-2 py-2 rounded-md px-2 border-none outline-none w-[100%] '
+            className='text-richblack-800 bg-white border-2 border-richblack-800  mt-2 py-2 rounded-md px-2 w-[100%] '
             placeholder='Enter Password'
             type={`${(showPassword==true)?"text":"password"}`}
             value={formData.password}
@@ -108,7 +108,7 @@ Login(formData.email , formData.password , navigate , dispatch)
             ></input>
             <div className='show_pass_btn' onClick={changeShowPassword}>
                 {
-                (showPassword)?(<IoEye size={25} fill='white'/>):(<IoMdEyeOff size={25} fill='white'/>)
+                (showPassword)?(<IoEye size={25} className='text-richblack-800'/>):(<IoMdEyeOff size={25} className='text-richblack-800'/>)
                 }
                 </div>
 

@@ -29,7 +29,15 @@ function submitHandler(event)
 
     // formData.phoneNumber=12345;
     console.log(formData);
-    updateProfileDetails(formData.gender , formData.dob , formData.about , formData.phoneNumber , formData.firstName , formData.lastName ,token , dispatch );
+    updateProfileDetails(formData.gender , 
+        formData.dob , 
+        formData.about , 
+        formData.phoneNumber , 
+        formData.firstName , 
+        formData.lastName ,
+        token , 
+        dispatch ,
+    navigate);
 }
 
     console.log("FormData = ", formData);

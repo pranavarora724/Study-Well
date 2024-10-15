@@ -1,7 +1,7 @@
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
-import Logo from '../../assets/Logo/Logo-Full-Light.png';
+import Logo from '../../assets/Logo/Logo-Small-Light.png';
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -27,11 +27,12 @@ function Navbar() {
     const token = useSelector((state) => state.auth.token);
     const user = useSelector((state) => state.profile.user);
     const cartItems = useSelector((state) => state.cart.cartItems);
+    const cartItemsLength = useSelector((state) => state.cart.cartItemsLength);
     const [category, setCategory] = useState([]);
 
-    console.log("Token = ", token);
-    console.log("User = ", user);
-    console.log("cartItems = ", cartItems);
+    // console.log("Token = ", token);
+    // console.log("User = ", user);
+    // console.log("cartItems = ", cartItems);
 
     // let response = null;
 
@@ -62,6 +63,11 @@ function Navbar() {
             return false;
     }
 
+    function categoryHandler(link)
+    {
+        navigate(link);
+    }
+
     // GSAP animation for opening of sidebar
     const {contextSafe} = useGSAP();
 
@@ -79,7 +85,7 @@ function Navbar() {
         })
     })
     return (
-        <div className="flex items-center justify-center  w-screen my-2">
+        <div className="flex items-center justify-center  w-screen mt-2 bg-richblack-900">
             <div className="w-11/12 max-w-maxContent  flex flex-row mx-auto justify-between items-center">
 
                {/* Hamburger ICONN for Sidebar */}
@@ -91,12 +97,12 @@ function Navbar() {
                 {/* Logo */}
                 <NavLink to={'/'}>
                 <div className="">
-                    <img className="max-[700px]:w-[150px]" src={Logo}></img>
+                    <img className="" src={Logo}></img>
                 </div>
                 </NavLink>
 
                 {/* Links */}
-                <div className="hidden md:flex md:flex-row gap-x-4 text-white">
+                <div className="hidden md:flex md:flex-row gap-x-4 text-white md:justify-center">
 
                     {
 
@@ -111,8 +117,14 @@ function Navbar() {
                                             {
 
                                                 category.map((cat, index) => {
+
+                                                    const link = "category/" + cat.name.toLowerCase().replace(' ','-');
+                                                    console.log(link);
                                                     return (
-                                                        <div key={index} className="cursor-pointer hover:bg-richblack-100 p-2 rounded-xl">{cat.name}</div>
+                                                        <div onClick={()=>{categoryHandler(link)}} key={index} className="cursor-pointer hover:bg-richblack-100 p-2 rounded-xl"> 
+                                                         {cat.name}
+                                                         </div> 
+                                                        // <NavLink to={`/category`}><div>{cat.name}</div></NavLink>
                                                     )
                                                 })
                                             }
@@ -135,13 +147,20 @@ function Navbar() {
                     {
                         (token) ?
                             // User logged in
-                            (<div className="flex flex-row gap-x-4 items-center text-white">
+                            (<div className="flex flex-row gap-x-4 py-2 items-center text-white">
 
                                 {/* Cart */}
                                 {
                                     (user?.accountType === "Student") ?
                                         // Display cart
-                                        (<div><AiOutlineShoppingCart className="text-2xl" /></div>) :
+                                        (<Link to="/dashboard/cart" className="relative">
+                                            <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+                                            {cartItemsLength > 0 && (
+                                              <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                                                {cartItemsLength}
+                                              </span>
+                                            )}
+                                          </Link>) :
                                         // Not Display Cart
                                         (<div></div>)
                                 }

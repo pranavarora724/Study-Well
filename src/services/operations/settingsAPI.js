@@ -8,7 +8,7 @@ import { setProfile } from '../../slices/profileSlice'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 
-export async function updateProfilePic(profilePic, token , dispatch) {
+export async function updateProfilePic(profilePic, token , dispatch , navigate) {
     const toastId = toast.loading('Loading...');
 
     try {
@@ -41,9 +41,23 @@ export async function updateProfilePic(profilePic, token , dispatch) {
 
     } catch (error) {
 
-        console.log(error);
-        console.log(error?.response?.data?.message);
-        toast.error(error?.response?.data?.message);
+        if(error?.response?.data?.message?.message)
+            {
+                toast.error(error?.response?.data?.message?.message)
+                dispatch(setToken(null));
+                dispatch(setProfile(null));
+                dispatch(resetCart());
+            
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                navigate('/')
+            }
+                
+            else
+            {
+                console.log(error?.response?.data?.message);
+            toast.error(error?.response?.data?.message);
+            }
     }
 
     toast.remove(toastId);
@@ -54,6 +68,7 @@ export async function updatePAsswordFunction(
     newPassword,
     token,
     navigate,
+    dispatch
 )
 {
     const toastId = toast.loading('Loading');
@@ -77,9 +92,23 @@ export async function updatePAsswordFunction(
         
     } catch (error) {
 
-        console.log(error);
-        console.log(error?.response?.data?.message);
-        toast.error(error?.response?.data?.message);
+        if(error?.response?.data?.message?.message)
+            {
+                toast.error(error?.response?.data?.message?.message)
+                dispatch(setToken(null));
+                dispatch(setProfile(null));
+                dispatch(resetCart());
+            
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                navigate('/')
+            }
+                
+            else
+            {
+                console.log(error?.response?.data?.message);
+            toast.error(error?.response?.data?.message);
+            }
     }
 
     toast.remove(toastId);
@@ -93,7 +122,8 @@ export async function updateProfileDetails(
     firstName,
     secondName,
     token,
-    dispatch
+    dispatch,
+    navigate
 )
 {
     const toastId = toast.loading('Loading');
@@ -125,9 +155,23 @@ export async function updateProfileDetails(
         
     } catch (error) {
 
-        console.log(error);
-        console.log(error?.response?.data?.message);
-        toast.error(error?.response?.data?.message);    
+        if(error?.response?.data?.message?.message)
+            {
+                toast.error(error?.response?.data?.message?.message)
+                dispatch(setToken(null));
+                dispatch(setProfile(null));
+                dispatch(resetCart());
+            
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                navigate('/')
+            }
+                
+            else
+            {
+                console.log(error?.response?.data?.message);
+            toast.error(error?.response?.data?.message);
+            }   
     }
 
     toast.remove(toastId);

@@ -13,14 +13,20 @@ const courseSubSectionSchema = new mongoose.Schema(
             required:true
         },
 
-        timeDuration:{
-            type:String,
-            required:true
-        },
+        
 
         videoUrl:{
             type:String,
             required:true
+        },
+
+        // We need this Video
+        //  For Editing purposes - In Frontend
+        // We will Store Obbject after Stringifying it
+        // Then will convertt back to object 
+        videoObject:{
+            type:String,
+            // required:true
         },
 
         // We need public id to delete file from cloudinary

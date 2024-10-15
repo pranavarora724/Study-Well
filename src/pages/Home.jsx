@@ -11,14 +11,33 @@ import TiltedImages from '../components/core/HomePage/TiltedImages';
 import SkillsBox from '../components/core/HomePage/SkillsBox';
 import BecomeInstructor from '../components/core/HomePage/BecomeInstructor';
 import Footer from "../components/common/Footer";
+import ReviewSlider from "../components/common/ReviewSlider";
+import Sidebar from "../components/Dashboard/Sidebar";
+import NewSidebar from "../components/common/NewSidebar";
 
 function Home()
 {
     return (
         <div>
+
+            {/* <Sidebar></Sidebar> */}
+
+            <NewSidebar></NewSidebar>
+
+              {/* Section - 4 */}
+              <div className="mt-[0px] bg-white pb-12 pt-8">
+              
+              <SkillsBox></SkillsBox> 
+              <TiltedImages></TiltedImages> 
+              
+                
+                           
+            </div>
+
+
             {/* Secton 1 */}
             {/* Parent div of section 1 */}
-            <div className="flex flex-col w-11/12 max-w-maxContent mx-auto  ">
+            <div className="md:hidden flex flex-col w-11/12 max-w-maxContent mx-auto  ">
 
 
             {/* Become an instructor */}
@@ -34,7 +53,7 @@ function Home()
 
 
              {/* Heading */}
-             <div className="flex flex-row text-2xl font-semibold text-white gap-x-2 mx-auto mt-6">
+             <div className="flex flex-row text-2xl font-semibold text-richblack-900 gap-x-2 mx-auto mt-6">
                 <span>Empower Your Future With </span> 
                 <span className="text-blue-100"> Coding Skills</span>
             </div>
@@ -68,77 +87,85 @@ function Home()
 
             {/* Section 2 */}
             {/* Parent div of section 2 */}
+            <div className="w-[100%] bg-richblack-900 py-12">
             <div className="w-11/12 max-w-maxContent  mt-8 mx-auto ">
 
-                {/* 1st Code Block */}
-                <div className="md:flex md:flex-row md:justify-around gap-x-6 ">
-                   {/* Left part */}
-                    <div className=" w-[80%] md:w-[43%] mx-auto">
-                        <div className="text-white font-bold text-2xl">Unlock your <span className="text-blue-500"> Coding potential </span> with our online courses</div>
-                        <div className="text-sm text-richblack-400">Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you.</div>
+{/* 1st Code Block */}
+<div className="md:flex md:flex-row md:justify-around gap-x-6 ">
+   {/* Left part */}
+    <div className=" w-[80%] md:w-[43%] mx-auto">
+        <div className="text-white font-bold text-2xl">Unlock your <span className="text-blue-500"> Coding potential </span> with our online courses</div>
+        <div className="text-sm text-richblack-400">Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you.</div>
 
-                        {/* Buttons */}
-                        <div className="flex flex-row gap-x-4 mt-8 md:mt-16">
-                            <Button active={true} linkTo={'/signup'}>
-                                <div className="flex flex-row gap-x-2 items-center text-black">
-                                    <div>Try it Yourself</div>
-                                    <FaArrowRightLong />
-                                </div>
-                            </Button>
-
-                            <Button active={false} linkTo={'/signup'}>
-                                Learn More
-                            </Button>
-                            
-                        </div>
-                    </div>
-
-                    {/* Right Part */}
-                    <div className="w-[80%] relative mx-auto md:w-[50%] mt-12 md:mt-0 ">
-                        <CodeBlock codeColor={'text-yellow-25'} codeContent={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}></CodeBlock>
-                        <div className="absolute w-72 h-72 -top-4 rounded-full border-2 border-white z-20 bg-gradient-to-r from-yellow-5 to-yellow-100 opacity-10 bg-opacity-15 blur-2xl"></div>
-                    </div>
-
+        {/* Buttons */}
+        <div className="flex flex-row gap-x-4 mt-8 md:mt-16">
+            <Button active={true} linkTo={'/signup'}>
+                <div className="flex flex-row gap-x-2 items-center text-black">
+                    <div>Try it Yourself</div>
+                    <FaArrowRightLong />
                 </div>
+            </Button>
 
-                {/* 2nd code block */}
-                <div className="md:flex md:flex-row-reverse md:justify-around gap-x-6 mt-28">
-                   {/* Left part */}
-                    <div className=" w-[80%] md:w-[43%] mx-auto">
-                        <div className="text-white font-bold text-2xl">Start<span className="text-blue-500"> Coding in seconds </span> </div>
-                        <div className="text-sm text-richblack-400">Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.</div>
+            <Button active={false} linkTo={'/signup'}>
+                Learn More
+            </Button>
+            
+        </div>
+    </div>
 
-                        {/* Buttons */}
-                        <div className="flex flex-row gap-x-4 mt-8 md:mt-16">
-                            <Button active={true} linkTo={'/signup'}>
-                                <div className="flex flex-row gap-x-2 items-center text-black">
-                                    <div>Continue Lesson</div>
-                                    <FaArrowRightLong />
-                                </div>
-                            </Button>
+    {/* Right Part */}
+    <div className="w-[80%] relative mx-auto md:w-[50%] mt-12 md:mt-0 ">
+        <CodeBlock codeColor={'text-yellow-25'} codeContent={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}></CodeBlock>
+        <div className="absolute w-72 h-72 -top-4 rounded-full border-2 border-white z-20 bg-gradient-to-r from-yellow-5 to-yellow-100 opacity-10 bg-opacity-15 blur-2xl"></div>
+    </div>
 
-                            <Button active={false} linkTo={'/signup'}>
-                                Learn More
-                            </Button>
-                            
-                        </div>
-                    </div>
+</div>
 
-                    {/* Right Part */}
-                    <div className="w-[80%] relative mx-auto md:w-[50%] mt-12 md:mt-0">
-                        <CodeBlock codeColor={'text-yellow-25'} codeContent={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}></CodeBlock>
-                        <div className="absolute w-72 h-72 -top-4 rounded-full border-2 border-white z-20 bg-gradient-to-r from-blue-200 to-blue-300 opacity-10 bg-opacity-15 blur-2xl"></div>
-                    </div>
+{/* 2nd code block */}
+<div className="md:flex md:flex-row-reverse md:justify-around gap-x-6 mt-28">
+   {/* Left part */}
+    <div className=" w-[80%] md:w-[43%] mx-auto">
+        <div className="text-white font-bold text-2xl">Start<span className="text-blue-500"> Coding in seconds </span> </div>
+        <div className="text-sm text-richblack-400">Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.</div>
 
+        {/* Buttons */}
+        <div className="flex flex-row gap-x-4 mt-8 md:mt-16">
+            <Button active={true} linkTo={'/signup'}>
+                <div className="flex flex-row gap-x-2 items-center text-black">
+                    <div>Continue Lesson</div>
+                    <FaArrowRightLong />
                 </div>
+            </Button>
 
+            <Button active={false} linkTo={'/signup'}>
+                Learn More
+            </Button>
+            
+        </div>
+    </div>
+
+    {/* Right Part */}
+    <div className="w-[80%] relative mx-auto md:w-[50%] mt-12 md:mt-0">
+        <CodeBlock codeColor={'text-yellow-25'} codeContent={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}></CodeBlock>
+        <div className="absolute w-72 h-72 -top-4 rounded-full border-2 border-white z-20 bg-gradient-to-r from-blue-200 to-blue-300 opacity-10 bg-opacity-15 blur-2xl"></div>
+    </div>
+
+</div>
+
+</div>
             </div>
 
+            {/* Review Slider */}
+            <div className="w-11/12 max-w-maxContent  mt-8 mx-auto ">
+            <ReviewSlider></ReviewSlider>
+            </div>
+            
+            
             {/* Section 3 */}
-            <div className="relative ">
+            <div className="relative bg-white ">
 
                 {/* Heading */}
-                <div className="text-2xl font-semibold text-white text-center mt-28">Unlock The <span className="text-blue-100">Power of Code</span></div>
+                <div className="text-2xl pt-6 font-semibold text-richblack-900 text-center mt-28">Unlock The <span className="text-blue-100">Power of Code</span></div>
                 <div className="text-center text-richblack-500 text-sm">Learn to build anything you can imagine</div>
 
                 {/* 3 cards */}
@@ -232,13 +259,7 @@ function Home()
                 
             </div>
 
-            {/* Section - 4 */}
-            <div className="mt-[210px] bg-white pb-12 pt-8">
-                <SkillsBox></SkillsBox> 
-                <TiltedImages></TiltedImages>   
-                           
-            </div>
-
+          
             <BecomeInstructor></BecomeInstructor> 
 
             {/* Footer */}

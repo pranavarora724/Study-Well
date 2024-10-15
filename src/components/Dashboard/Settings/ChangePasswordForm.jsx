@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 function ChangePasswordForm() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const token = useSelector((state) => state.auth.token);
 
     const {
@@ -22,9 +23,14 @@ function ChangePasswordForm() {
         console.log("formData");
         console.log(data);
 
-        updatePAsswordFunction(data.currentPassword , data.newPassword , token , navigate);
+        updatePAsswordFunction(data.currentPassword ,
+             data.newPassword , 
+             token , 
+             navigate,
+             dispatch
+            );
     }
-    const dispatch = useDispatch();
+    
 
     const [showPassword1, setShowPassword1] = useState(false);
 
@@ -51,8 +57,8 @@ function ChangePasswordForm() {
 
     return (
         <div>
-            <div className="bg-richblack-800 mt-10 px-7 py-7">
-                <div className="text-white font-semibold">Change Password</div>
+            <div className=" mt-10 px-7 py-7  bg-richblack-800 rounded-lg mb-5">
+                <div className="text-richblack-50 font-semibold">Change Password</div>
 
                 <div className="mt-10">
                     <form onSubmit={handleSubmit(formSubmitHandler)}>
@@ -67,7 +73,7 @@ function ChangePasswordForm() {
                                 </div>
                                 <input
                                     placeholder='Current Password'
-                                    className='bg-richblack-700 w-[100%] text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                                    className='bg-richblack-700 w-[100%]  text-white mt-2 py-2 rounded-md pl-2 '
                                     name="currentPassword"
                                     type={`${(showPassword1 == true) ? "text" : "password"}`}
                                     
@@ -79,7 +85,7 @@ function ChangePasswordForm() {
                                 ></input>
                                 <div className='show_pass_btn' onClick={changeShowPassword1}>
                                     {
-                                        (showPassword1) ? (<IoEye size={25} fill='white' />) : (<IoMdEyeOff size={25} fill='white' />)
+                                        (showPassword1) ? (<IoEye size={25} className="text-white" />) : (<IoMdEyeOff size={25} className="text-white" />)
                                     }
                                 </div>
 
@@ -99,7 +105,7 @@ function ChangePasswordForm() {
                                 </div>
                                 <input
                                     placeholder='New Password'
-                                    className='bg-richblack-700 w-[100%] text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                                    className='bg-richblack-700 w-[100%] text-white border-2 border-richblack-700 mt-2 py-2 rounded-md pl-2 '
                                     name="newPassword"
                                     type={`${(showPassword2 == true) ? "text" : "password"}`}
                                     {...register("newPassword" , {
@@ -109,7 +115,7 @@ function ChangePasswordForm() {
                                 ></input>
                                 <div className='show_pass_btn' onClick={changeShowPassword2}>
                                     {
-                                        (showPassword2) ? (<IoEye size={25} fill='white' />) : (<IoMdEyeOff size={25} fill='white' />)
+                                        (showPassword2) ? (<IoEye size={25} className="text-white" />) : (<IoMdEyeOff size={25} className="text-white" />)
                                     }
                                 </div>
 

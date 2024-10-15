@@ -37,16 +37,16 @@ function Dashboard() {
             <div className="flex flex-row">
 
                 {/* Side bar */}
-                <div className="border-2 border-white bg-richblack-700   min-h-[100vh]">
+                <div className=" bg-richblack-700   min-h-[100vh]">
                     <Sidebar></Sidebar>
                 </div>
 
                 {/* Right side part */}
-                <div className="max-w-[800px] w-[80%] mx-auto border-2 border-white ">
+                <div className="max-w-[800px] w-[80%] mx-auto  ">
                     <div className="text-white text-2xl mt-6">My Profile</div>
 
                     {/* First div */}
-                    <div className="bg-richblack-800 mt-10 px-7 py-7 flex flex-row justify-between items-center">
+                    <div className="bg-richblack-800 mt-10 px-7 py-7 flex flex-col sm:flex-row justify-between items-center">
 
                         {/* Left part */}
                         <div className="flex flex-row gap-x-4 items-center">
@@ -63,7 +63,7 @@ function Dashboard() {
                         </div>
 
                         {/* Right part */}
-                        <div onClick={() => { navigate('/dashboard/settings') }} className="px-4 py-2 rounded-lg flex flex-row gap-x-4 items-center text-black font-semibold cursor-pointer hover:scale-95 transition-all duration-200 bg-yellow-200">
+                        <div onClick={() => { navigate('/dashboard/settings') }} className="px-4 mt-2 sm:mt-0 py-2 rounded-lg flex flex-row gap-x-4 items-center text-black font-semibold cursor-pointer hover:scale-95 transition-all duration-200 bg-yellow-200">
                             <div>Edit</div>
                             <FiEdit />
                         </div>
@@ -71,7 +71,7 @@ function Dashboard() {
                     </div>
 
                     {/* Second Div */}
-                    <div className="bg-richblack-800 mt-10 px-7 py-7 flex flex-row justify-between items-center">
+                    <div className="bg-richblack-800 mt-10 px-7 py-7 flex flex-col sm:flex-row justify-between items-center">
 
                         {/* Left part */}
                         <div className=" gap-x-4 items-center font-semibold">
@@ -80,7 +80,7 @@ function Dashboard() {
                         </div>
 
                         {/* Right part */}
-                        <div onClick={() => { navigate('/dashboard/settings') }} className="px-4 py-2 rounded-lg flex flex-row gap-x-4 items-center text-black font-semibold cursor-pointer hover:scale-95 transition-all duration-200 bg-yellow-200">
+                        <div onClick={() => { navigate('/dashboard/settings') }} className="px-4 mt-2 sm:mt-0 py-2 rounded-lg flex flex-row gap-x-4 items-center text-black font-semibold cursor-pointer hover:scale-95 transition-all duration-200 bg-yellow-200">
                             <div>Edit</div>
                             <FiEdit />
                         </div>
@@ -107,7 +107,7 @@ function Dashboard() {
                         </div>
 
                         {/* Bottom */}
-                        <div className="flex flex-row justify-between w-[90%] font-semibold">
+                        <div className="flex flex-col sm:flex-row justify-between w-[90%] font-semibold">
 
                             {/* Left div */}
                             <div>

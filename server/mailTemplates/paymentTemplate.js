@@ -69,7 +69,7 @@ function paymentTemplate(name , amount , orderId , paymentId)
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
+            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://res.cloudinary.com/dzop42vnu/image/upload/v1728969840/StudyNotion/cqqhlgo5zvs4ktywfwep.png"
                     alt="StudyNotion Logo"></a>
             <div class="message">Course Payment Confirmation</div>
             <div class="body">

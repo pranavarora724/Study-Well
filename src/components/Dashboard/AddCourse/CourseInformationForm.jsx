@@ -6,6 +6,10 @@ import { apiConnector } from "../../../services/apiConnector";
 import { categoryEndponts } from "../../../services/apis";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import RequirementField from './CourseInformationForm/RequirementField'
+import ChipInput from "./CourseInformationForm/ChipInput";
+import Thumbnail from "./CourseInformationForm/Thumbnail";
+import {createCourse} from '../../../services/operations/createCourseAPI'
+import { useNavigate } from "react-router-dom";
 
 function CourseInformationForm()
 {
@@ -40,19 +44,37 @@ function CourseInformationForm()
     } = useForm();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const course = useSelector((state)=> state.course.course);
     const editCourse = useSelector((state)=> state.course.editCourse);
+    const user = useSelector((state)=>state.profile.user)
+    const step = useSelector((state)=>state.course.step)
+    const token = useSelector((state)=>state.auth.token);
 
-    function onSubmit()
+    function onSubmit(data)
     {
-
+        console.log("FormData = " , data);
+        const formData = data;
+        createCourse(formData.courseTitle , 
+            formData.courseShortDesc , 
+            user._id , 
+            formData.courseBenefits , 
+            parseInt(`${formData.coursePrice}` , 10) , 
+            formData.courseThumbnail , 
+            formData.Tags , 
+            formData.courseCategory , 
+            formData.courseRequirements , 
+            dispatch , 
+            step,
+        token,
+    navigate)
     }
 
     // console.log("Course Categories = " , courseCategories);
    
     return(
-        <div>
+        <div className="mb-8">
 
             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -69,8 +91,8 @@ function CourseInformationForm()
                     ></input>
 
                     {
-                        errors.courseTitle == true && (
-                            <span className="text-pink-300">Please Enter Title</span>
+                        errors.courseTitle  && (
+                            <span className="text-pink-200">Please Enter Title</span>
                         )
                     }
                 </div>
@@ -88,7 +110,7 @@ function CourseInformationForm()
                     ></textarea>
 
                     {
-                        errors.courseShortDesc == true && (
+                        errors.courseShortDesc  && (
                             <span className="text-pink-300">Please Enter Description</span>
                         )
                     }
@@ -107,8 +129,8 @@ function CourseInformationForm()
                     ></input>
 
                     {
-                        errors.coursePrice == true && (
-                            <span className="text-pink-300">Please Enter Price</span>
+                        errors.coursePrice  && (
+                            <span  className="text-pink-300 absolute -bottom-6">Please Enter Price</span>
                         )
                     }
 
@@ -117,7 +139,7 @@ function CourseInformationForm()
                 </div>
 
                 {/* Course Categories */}
-                <div className="flex flex-col mt-7 relative">
+                <div className="flex flex-col mt-10 relative">
                     <label htmlFor="courseCategory" className="text-white">Choose Category<sup className="text-pink-300">*</sup></label>
                     
                     <select
@@ -138,7 +160,7 @@ function CourseInformationForm()
                         }
                     </select>
                     {
-                        errors.courseCategory == true && (
+                        errors.courseCategory  && (
                             <span className="text-pink-300">Please Choose A Category</span>
                         )
                     }
@@ -160,11 +182,21 @@ function CourseInformationForm()
                     ></textarea>
 
                     {
-                        errors.courseBenefits == true && (
+                        errors.courseBenefits  && (
                             <span className="text-pink-300">Please Enter Benefits</span>
                         )
                     }
                 </div>
+
+                {/* Upload image */}
+                <Thumbnail 
+                name="courseThumbnail"
+                label="Choose Thumbnail"
+                errors={errors}
+                register={register}
+                setValue={setValue}
+                getValues={getValues}
+                />
 
                 {/* Course Rquirements */}
                 <RequirementField 
@@ -176,6 +208,20 @@ function CourseInformationForm()
                   getValues={getValues}
                 />
 
+                {/* Chip input Tags Field */}
+                <ChipInput 
+                name="Tags"
+                label="Tags"
+                errors={errors}
+                register={register}
+                setValue={setValue}
+                getValues={getValues}
+                />
+
+                <div className="w-[95%] mx-auto flex flex-row justify-between">
+                    <div className="w-[1px]"></div>
+                    <button type="submit" className="mt-4 hover:scale-95 transition-all duration-150 bg-yellow-50 text-black px-2 py-2 border-none rounded-lg">Proceed</button>
+                </div>
 
             </form>    
         </div>

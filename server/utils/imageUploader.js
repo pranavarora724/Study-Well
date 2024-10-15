@@ -7,7 +7,8 @@ async function imageUploader(uploadedFile , folder_name)
 console.log("Temp file path = ",uploadedFile.tempFilePath)
 
 return await cloudinary.uploader.upload( uploadedFile.tempFilePath , {
-    folder:folder_name
+    folder:folder_name,
+        resource_type:"auto"
 });
 
 }

@@ -7,11 +7,13 @@ import { BiSolidQuoteSingleLeft } from "react-icons/bi";
 import Section2 from '../components/core/About Page/Section2';
 import GridSection from '../components/core/About Page/GridSection';
 import ContactUsForm from '../components/common/ContactUsForm';
+import NewSidebar from '../components/common/NewSidebar';
 
 function About() {
     return (
         <div>
 
+            <NewSidebar></NewSidebar>
             {/* Section 1 */}
             {/* Parent Div Of Section 1 */}
             <div>
@@ -41,7 +43,7 @@ function About() {
 
             {/* Contact us form */}
             <div className='mt-20 text-white'>
-                <div className='text-2xl text-center'>Get in Touch</div>
+                <div className='text-2xl text-center text-richblack-800 font-bold'>Get in Touch</div>
                 <div className='text-sm mt-2 text-center text-richblack-400'>We would love to hear from you , please fill this form</div>
                 <ContactUsForm></ContactUsForm>
             </div>

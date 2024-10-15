@@ -8,6 +8,7 @@ export const apiConnector = (method, url, bodyData, headers, params) => {
   console.log("Method = " , method);
   console.log("Url = " , url);
   console.log("BodyData" , bodyData);
+  console.log("PArams" , params);
   return axios({
     method: `${method}`,
     url: `${url}`,

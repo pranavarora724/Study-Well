@@ -36,7 +36,7 @@ async function createReviewAndRating(req , res)
         } 
 
         
-        const existingCourse = await Course.findById({courseId});
+        const existingCourse = await Course.findOne({_id:courseId});
         if(!existingCourse)
         {
             return res.status(400).json(
@@ -47,12 +47,30 @@ async function createReviewAndRating(req , res)
             )
         }
 
+        // Check if a review for a course is already submiitted or not
+        const existingReview =await RatingAndReview.findOne(
+            {
+                userId:userId,
+                courseId:courseId
+            }
+        )
+
+        if(existingReview)
+        {
+            return (res.status(400).json(
+                {
+                    success:false,
+                    message:'Allowed only One review for a Course'
+                }
+            ))
+        }
+
         // const uid = new mongoose.Schema.Types.ObjectId(userId);
 
         // Onl allowed to write review if you are enrolled for the course
         const uid = new mongoose.Types.ObjectId(userId);
         const studentsEnrolled = existingCourse.studentsEnrolled;
-        if(studentsEnrolled.contains(uid))
+        if(studentsEnrolled.includes(uid))
         {
             const newRatingAndReview = await RatingAndReview.create(
                 {
@@ -63,8 +81,8 @@ async function createReviewAndRating(req , res)
                 }
             )
         
-            const updatedCourse = await Course.findByIdAndUpdate(
-                {courseId},
+            const updatedCourse = await Course.findOneAndUpdate(
+                {_id:courseId},
                 {$push:{ratingAndReviews:newRatingAndReview._id}},
                 {new:true}
             )
@@ -122,7 +140,7 @@ async function getAllReviewsAndRtingsOfACourse(req , res)
         )
     } 
 
-    const existingCourse = await Course.findById({courseId});
+    const existingCourse = await Course.findOne({_id:courseId});
     if(!existingCourse)
     {
         return res.status(400).json(
@@ -163,8 +181,8 @@ async function getAllRatingsAndReviews(req , res)
     try {
 
         const Reviews = await RatingAndReview.find({})
-                                      .populate({path:'courseId' , select:'name'})
-                                    .populate({path:'userId' , select:'firstName'})
+                                      .populate({path:'courseId'})
+                                    .populate({path:'userId'})
                                     .exec(); 
 
 

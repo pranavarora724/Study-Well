@@ -7,6 +7,7 @@ import {sendOTP} from '../../services/operations/authAPI';
 import { useDispatch } from 'react-redux';
 import {setSignupData} from '../../slices/authSlice'
 import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 // 
 
 function SignUpForm()
@@ -70,14 +71,21 @@ function SignUpForm()
         console.log("FormData");
         console.log(formData);
 
-        dispatch(setSignupData(
-            formData
-        ));
-
-        
-        console.log("After setting signup data = " , signUpData);
-
-        sendOTP(formData.email , navigate , dispatch);
+        if(formData.createPassword == formData.confirmPassword)
+        {
+            dispatch(setSignupData(
+                formData
+            ));
+    
+            
+            console.log("After setting signup data = " , signUpData);
+    
+            sendOTP(formData.email , navigate , dispatch);
+           
+        }
+        else{
+            toast.error("Passwords dont match");
+        }
         // props.setIsLogin(true);
         // navigate("/");
     }
@@ -85,15 +93,15 @@ function SignUpForm()
     return(
 
         <div className='  max-w-[400px] w-[90%]'>
-            <h2 className='text-white font-semibold text-2xl'>Join the millions learning to code with StudyNotion for free </h2>
-            <div className='mt-6 opacity-80 text-white'>Build skills for today,tomorrow and beyond</div>
-            <div className='opacity-80 text-white'>Education to future proof our career</div>
+            <h2 className='text-richblack-900 font-bold text-3xl'>Join the millions learning to code with StudyWell for free </h2>
+            <div className='mt-6 opacity-80 text-richblack-700'>Build skills for today,tomorrow and beyond</div>
+            <div className='opacity-80 text-richblack-700'>Education to future proof our career</div>
 
 
             <form onSubmit={submitHandler}>
 
                 {/* Radio Buttons */}
-                <div className='mt-6 py-1 flex flex-row justify-around items-center bg-richblack-800 w-[180px] rounded-full'>
+                <div className='mt-6 py-1 flex flex-row justify-around items-center bg-richblack-600 w-[180px] rounded-full'>
                     <input className='hidden'
                         type='radio'
                         name='profile'
@@ -138,13 +146,13 @@ function SignUpForm()
                <div className='flex flex-row gap-x-4 mt-6'>
                <div className='fieldContainer'>
                     <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>First Name</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>First Name</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                         </div>
                     <input
                 
                         placeholder='Enter first name'
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                        className='border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md pl-2'
                         name="firstName"
                         type='text'
                         required
@@ -155,12 +163,12 @@ function SignUpForm()
 
                 <div className='fieldContainer'>
                 <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Last Name</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>Last Name</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                 </div>
                     <input
                         placeholder='Enter last name'
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                        className='border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md pl-2 '
                         name="lastName"
                         type='text'
                         required
@@ -173,13 +181,13 @@ function SignUpForm()
                        {/* Email */}
                 <div className='fieldContainer mt-4'>
                 <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Email</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>Email</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                         </div>
                     <input
                         placeholder='Enter email'
                         name="email"
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md px-2 border-none outline-none w-[100%] '
+                        className='border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md px-2  w-[100%] '
                         type='email'
                         required
                         value={formData.email}
@@ -191,13 +199,13 @@ function SignUpForm()
                 {/* Phone Number */}
                 <div className='fieldContainer mt-4'>
                 <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Phone Number</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>Phone Number</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                         </div>
                     <input
                         placeholder='Phone Number'
                         name="phoneNumber"
-                        className='appearance-none bg-richblack-800 text-white mt-2 py-2 rounded-md px-2 border-none outline-none w-[100%] '
+                        className='appearance-none border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md px-2  w-[100%] '
                         type='number'
                         required
                         value={formData.phoneNumber}
@@ -210,12 +218,12 @@ function SignUpForm()
 
               <div className='fieldContainer password_field'>
                 <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Password</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>Password</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                         </div>
                     <input
                         placeholder='Create password'
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                        className='border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md pl-2 '
                         name="createPassword"
                         type={`${(showPassword1 == true) ? "text" : "password"}`}
                         value={formData.createPassword}
@@ -224,19 +232,19 @@ function SignUpForm()
                     ></input>
                     <div className='show_pass_btn' onClick={changeShowPassword1}>
                         {
-                            (showPassword1) ? (<IoEye size={25} fill='white' />) : (<IoMdEyeOff size={25} fill='white' />)
+                            (showPassword1) ? (<IoEye size={25} className='text-richblack-700' />) : (<IoMdEyeOff size={25} className='text-richblack-700'/>)
                         }
                     </div>
                 </div>
 
                 <div className='fieldContainer password_field'>
                 <div className='flex flex-row gap-x-1'>
-                        <span className='text-richblack-50 text-sm'>Confirm Password</span> 
+                        <span className='text-richblack-600 text-sm font-semibold'>Confirm Password</span> 
                         <span className='text-pink-200 text-sm'>*</span> 
                         </div>
                     <input
                         placeholder='Confirm password'
-                        className='bg-richblack-800 text-white mt-2 py-2 rounded-md pl-2 border-none outline-none'
+                        className='border-2 border-richblack-500 text-richblack-700 mt-2 py-2 rounded-md pl-2 '
                         name="confirmPassword"
                         type={`${(showPassword2 == true) ? "text" : "password"}`}
                         value={formData.password}
@@ -245,7 +253,7 @@ function SignUpForm()
                     ></input>
                     <div className='show_pass_btn' onClick={changeShowPassword2}>
                         {
-                            (showPassword2) ? (<IoEye size={25} fill='white' />) : (<IoMdEyeOff size={25} fill='white' />)
+                            (showPassword2) ? (<IoEye size={25} className='text-richblack-700' />) : (<IoMdEyeOff size={25} className='text-richblack-700' />)
                         }
                     </div>
                 </div>
@@ -257,9 +265,9 @@ function SignUpForm()
 
             </form>
 
-            <div className='partition'>
+            <div className='partition mb-10'>
                 <div className='line1'></div>
-                <div className='or'>OR</div>
+                <div className='or'></div>
                 <div className='line2'></div>
             </div>
 

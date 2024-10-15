@@ -10,8 +10,8 @@ function SignUp()
         <div className="flex flex-row gap-x-12 mt-12 mx-auto ">
         
             <SignUpForm></SignUpForm>
-            <div>
-                <img src={SignUpImage} className="h-[300px] md:h-[400px]"></img>
+            <div className="hidden min-[700px]:flex">
+                <img src="pics/home.svg" className="h-[300px] md:h-[400px]"></img>
             </div>            
         </div>
     )

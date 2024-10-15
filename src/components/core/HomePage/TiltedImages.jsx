@@ -7,7 +7,7 @@ import Button from './Button';
 function TiltedImages()
 {
     return(
-        <div className="w-10/12 mx-auto mt-24">
+        <div className="w-10/12 mx-auto mt-4">
 
                 {/* heading */}
             <div className="text-lg sm:text-2xl font-bold text-center">Your Swiss Knife for <span className="text-blue-400">learning any language</span></div>
@@ -22,7 +22,7 @@ function TiltedImages()
 
             {/* Button */}
             <div className='flex flex-row w-fit mx-auto mt-12'>
-                <Button className='justify-center mx-auto ' active={true} linkTo={'/signup'}>Learn More</Button>
+                <Button className='justify-center mx-auto ' active={true} linkTo={'/signup'}>Get Started</Button>
             </div>
 
         </div>
