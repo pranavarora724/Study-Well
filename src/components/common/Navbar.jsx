@@ -116,7 +116,7 @@ function Navbar() {
                                         <div key={index} className="invisible  transition-all duration-200 opacity-0 group-hover:opacity-90 group-hover:visible group-hover:flex group-hover:flex-col text-black bg-richblack-25   absolute rounded-xl w-[200px] p-4  -translate-x-[20%] z-50">
                                             {
 
-                                                category.map((cat, index) => {
+                                               category && category.map((cat, index) => {
 
                                                     const link = "category/" + cat.name.toLowerCase().replace(' ','-');
                                                     console.log(link);
