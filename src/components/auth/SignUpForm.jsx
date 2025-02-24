@@ -125,16 +125,16 @@ function SignUpForm()
                     <input className='hidden'
                         type='radio'
                         name='profile'
-                        value='Teacher'
+                        value='Instructor'
                         id='teacher'
 
-                        checked={formData.profile == "Teacher"}
+                        checked={formData.profile == "Instructor"}
                         onChange={changeHandler}
                     ></input>
 
                     <label
                         className={`text-white label 
-                        ${formData.profile == "Teacher" ? "text-richblack-200 font-semibold py-2 px-2 rounded-l-full rounded-r-full  bg-richblack-900" : ""}`}
+                        ${formData.profile == "Instructor" ? "text-richblack-200 font-semibold py-2 px-2 rounded-l-full rounded-r-full  bg-richblack-900" : ""}`}
                         htmlFor='teacher'>
                         Teacher
                     </label>
